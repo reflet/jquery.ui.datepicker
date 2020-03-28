@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>複数選択(jQuery UI)</title>
+  <link href="./css/lib/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" type="text/css" />
+  <style type="text/css">
+    body  { font-size:62.5%; }
+    input { display: inline-block; }
+  </style>
+</head>
+<body>
+  <p>
+    期間指定： <input type="text" name="cal1" id="cal1"> 〜 <input type="text" name="cal2" id="cal2">
+  </p>
+
+  <script src="./js/lib/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="./js/lib/jquery-ui-1.8.18.custom.js" type="text/javascript"></script>
+  <script>
+    var datepicker = function(id) {
+      var month = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+          weeks = ['日', '月', '火', '水', '木', '金', '土'];
+      return $(id).datepicker({
+        dateFormat        : 'yy/mm/dd (DD)',  // 入力される日付のフォーマット
+        yearSuffix        : '年',             // カレンダー上部の西暦4桁の後ろに付ける文字 ( 例: '年' → '2014年' )
+        showMonthAfterYear: true,             // カレンダー上部の年後ろに月を表示するかどうか
+        monthNames        : month,            // カレンダー上部に表示する月名のリスト
+        firstDay          : 1,                // カレンダー上の週の始まりの曜日(1: 月曜日)
+        dayNames          : weeks,
+        dayNamesMin       : weeks,            // 曜日ラベルのリスト
+        minDate           : new Date(),       // '-7d': 当日から7日前まで
+        maxDate           : '+2m',            // '+2m': 2ヶ月先まで, '+7d': 1週間先まで
+        hideIfNoPrevNext  : true              // 最小月/最大月でカーソルが非表示
+      });
+    };
+
+    $(function() {
+      datepicker('#cal1');
+      datepicker('#cal2');
+    });
+  </script>
+</body>
+</html>
